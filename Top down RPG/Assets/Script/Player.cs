@@ -1,26 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health;
-
+    private Rigidbody2D rig;
     public float speed;
+    private Vector2 direction;
 
-
-    void Attack()
+    private void Start()
     {
-        //attack
+        rig = GetComponent<Rigidbody2D>();
     }
 
-    void Movement()
+    private void Update()
     {
-        //Movimento
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        
     }
 
-    void Jump()
+    private void FixedUpdate()
     {
-        // Pulo 
+        rig.MovePosition(rig.position + direction * speed*Time.fixedDeltaTime);
     }
 }
