@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
    
     private float initialSpeed;
     private bool _isRunning;
+    private bool _isRolling;
     private Vector2 _direction;
     
     
@@ -28,6 +29,12 @@ public class Player : MonoBehaviour
     {
         get { return _isRunning; }
         set { _isRunning = value; }
+        
+    }
+    public bool isRolling // faz com que acesse valores em outra classe 
+    {
+        get { return _isRolling; }
+        set { _isRolling = value; }
     }
 
     private void Start()
@@ -41,6 +48,7 @@ public class Player : MonoBehaviour
        
         OnInput();
         OnRun();
+        OnRolling();
     }
 
     private void FixedUpdate()
@@ -71,6 +79,17 @@ public class Player : MonoBehaviour
         {
             speed = initialSpeed;
             _isRunning = false;
+        }
+    }
+
+    void OnRolling()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            isRolling = true;
+        } if (Input.GetMouseButtonUp(1))
+        {
+            isRolling = false;
         }
     }
     #endregion
