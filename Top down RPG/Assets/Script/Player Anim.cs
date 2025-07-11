@@ -13,10 +13,20 @@ public class PlayerAnim : MonoBehaviour
     {
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
+    {
+        OnMove();
+        OnRun();
+       
+    }
+
+    #region MovementAnim
+
+    void OnMove()
     {
         if (player.direction.sqrMagnitude > 0)
         {
@@ -26,7 +36,8 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetInteger("transition",0);
         }
-
+    
+        //***** Mudança de direcao do player ***//
         if (player.direction.x > 0)
         {
             transform.eulerAngles = new Vector2(0, 0);
@@ -36,5 +47,18 @@ public class PlayerAnim : MonoBehaviour
         {
             transform.eulerAngles = new Vector2(0, 180);
         }
+
+       
     }
+
+    void OnRun()
+    {
+        if (player.isRunning == true)
+        {
+            anim.SetInteger("transition",2);
+        }
+    }
+
+    #endregion
+   
 }
