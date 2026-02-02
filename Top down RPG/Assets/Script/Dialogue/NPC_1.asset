@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637a406872ea91843bb166157eba7d87, type: 3}
+  m_Name: NPC_1
+  m_EditorClassIdentifier: 
+  actor: {fileID: 5399112704838742534, guid: 506930bf6249cf54cb48a517ce8143da, type: 3}
+  speakerSprite: {fileID: -1894558014, guid: 32a68dc65c78ab6498806fb9bc33911e, type: 3}
+  sentence: "Ol\xE1 "
+  dialogues:
+  - actorName: NPC 1
+    profile: {fileID: -1894558014, guid: 32a68dc65c78ab6498806fb9bc33911e, type: 3}
+    sentence:
+      portuguese: "Fala J\xE3o"
+      english: 
