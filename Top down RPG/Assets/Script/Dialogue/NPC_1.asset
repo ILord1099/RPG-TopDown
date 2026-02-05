@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: NPC_1
   m_EditorClassIdentifier: 
   actor: {fileID: 5399112704838742534, guid: 506930bf6249cf54cb48a517ce8143da, type: 3}
-  speakerSprite: {fileID: -1894558014, guid: 32a68dc65c78ab6498806fb9bc33911e, type: 3}
-  sentence: "Ol\xE1 "
+  speakerSprite: {fileID: 0}
+  sentence: 
   dialogues:
   - actorName: NPC 1
     profile: {fileID: -1894558014, guid: 32a68dc65c78ab6498806fb9bc33911e, type: 3}
     sentence:
       portuguese: "Fala J\xE3o"
+      english: 
+  - actorName: 'NPC 1 '
+    profile: {fileID: -1894558014, guid: 32a68dc65c78ab6498806fb9bc33911e, type: 3}
+    sentence:
+      portuguese: 'venho aqui desejar um dia Ok '
       english: 

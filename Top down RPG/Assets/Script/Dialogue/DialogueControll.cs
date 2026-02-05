@@ -19,13 +19,18 @@ public class DialogueControll : MonoBehaviour
     private int index;// index das sentenças 
     private string[] sentences;
 
+    public static DialogueControll instance;
 
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
 
     }
-
-
 
     void Update()
     {

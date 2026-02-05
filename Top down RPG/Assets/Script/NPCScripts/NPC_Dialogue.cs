@@ -7,14 +7,33 @@ public class NPC_Dialogue : MonoBehaviour
 
     public float DialogueRange;
     public LayerMask PlayerLayer;
+
+    public DialogueSettings dialogue;
+
+    bool playerHit;
+
+    private List<string> sentences = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetNPCInfo();
     }
-
+     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E)&& playerHit)
+        {
+            DialogueControll.instance.Speech(sentences.ToArray());
+        }
+    }
+    void GetNPCInfo()
+    {
+        for (int i = 0; i < dialogue.dialogues.Count; i++) 
+        {
+            sentences.Add(dialogue.dialogues[i].sentence.portuguese);
+        }
+    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ShowDialogue();
     }
@@ -23,11 +42,12 @@ public class NPC_Dialogue : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(transform.position, DialogueRange,PlayerLayer);
         if (hit != null)
         {
-            Debug.Log("player na area de colisão.");
+           playerHit = true;
         }
         else
         {
-
+            playerHit= false;
+            DialogueControll.instance.dialogueObj.SetActive(false);
         }
 
     }
