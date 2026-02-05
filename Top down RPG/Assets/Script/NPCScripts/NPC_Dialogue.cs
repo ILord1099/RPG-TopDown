@@ -29,7 +29,16 @@ public class NPC_Dialogue : MonoBehaviour
     {
         for (int i = 0; i < dialogue.dialogues.Count; i++) 
         {
-            sentences.Add(dialogue.dialogues[i].sentence.portuguese);
+            switch (DialogueControll.instance.language)
+            {
+                case DialogueControll.idioma.pt:
+                    sentences.Add(dialogue.dialogues[i].sentence.portuguese);
+                    break;
+                case DialogueControll.idioma.eng:
+                    sentences.Add(dialogue.dialogues[i].sentence.english);
+                    break;
+            }
+
         }
     }
     // Update is called once per frame
@@ -47,7 +56,7 @@ public class NPC_Dialogue : MonoBehaviour
         else
         {
             playerHit= false;
-            DialogueControll.instance.dialogueObj.SetActive(false);
+           // sentences = null;
         }
 
     }
