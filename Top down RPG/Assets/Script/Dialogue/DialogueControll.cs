@@ -1,69 +1,62 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // 👈 IMPORTANTE
 
 public class DialogueControll : MonoBehaviour
 {
     [System.Serializable]
     public enum idioma
     {
-        pt,eng
+        pt, eng
     }
 
     public idioma language;
 
     [Header("Components")]
     public GameObject dialogueObj; // janela de dialogo
-    public Image profileSprite;// sprite do perfil
-    public Text speechText;// txt de fala
-    public Text actorNameText;// nome do npc 
+    public Image profileSprite;    // sprite do perfil
+    public TMP_Text speechText;    // texto da fala (TMP)
+    public TMP_Text actorNameText; // nome do NPC (TMP)
 
     [Header("Settings")]
-    public float typingSpeed;// velocidade de fala 
+    public float typingSpeed; // velocidade de digitação
 
-    //variaveis de controle 
-    private bool isShowing; // se janela esta visivel
-    private int index;// index das senten�as 
+    // variáveis de controle
+    private bool isShowing;
+    private int index;
     private string[] sentences;
 
     public static DialogueControll instance;
-
-
 
     private void Awake()
     {
         instance = this;
     }
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
     IEnumerator TypeSentence()
     {
+        speechText.text = "";
+
         foreach (char letter in sentences[index].ToCharArray())
         {
             speechText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
     }
-    //pular para proxima fala 
+
+    // pular para próxima fala
     public void NextSentence()
     {
-        if(speechText.text == sentences[index])
+        if (speechText.text == sentences[index])
         {
-            if (index < sentences.Length -1)
+            if (index < sentences.Length - 1)
             {
                 index++;
-                speechText.text = "";
                 StartCoroutine(TypeSentence());
             }
-            else //quando terminar o texti 
+            else // terminou o diálogo
             {
                 speechText.text = "";
                 index = 0;
@@ -73,13 +66,15 @@ public class DialogueControll : MonoBehaviour
             }
         }
     }
-    // chamar a fala do NPC 
-    public void Speech(string[]txt)
+
+    // chamar a fala do NPC
+    public void Speech(string[] txt)
     {
-        if(!isShowing)
+        if (!isShowing)
         {
             dialogueObj.SetActive(true);
             sentences = txt;
+            index = 0;
             StartCoroutine(TypeSentence());
             isShowing = true;
         }
